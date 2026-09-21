@@ -2,6 +2,7 @@ import React from "react";
 import "../styles.css";
 
 function Product({ name, price, img, onAddToCart, onRemove, isAdmin }) {
+  
   return (
     <div className="Product">
       <h1>{name}</h1>
