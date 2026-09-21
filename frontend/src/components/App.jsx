@@ -282,7 +282,7 @@ function App() {
                   key={index}
                   name={product.name}
                   price={product.price}
-                  img={product.image_url}
+                  img={product.img}
                   isAdmin={isAdmin}
                   onAddToCart={(event) => handleAddToCart(event, product.id)}
                   onRemove={() => handleRemoveFromStore(product.id)}
