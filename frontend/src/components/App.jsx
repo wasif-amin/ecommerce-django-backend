@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import Login from "./Login";
 
 const API_BASE_URL =
-  import.meta.env.VITE_API_BASE_URL || "http://localhost:5001";
+  import.meta.env.VITE_API_BASE_URL || "http://127.0.0.1:8000";
 
 function App() {
   const [isAdmin, setIsAdmin] = useState(false);
@@ -219,7 +219,7 @@ function App() {
   }
 
   useEffect(() => {
-    fetch(`${API_BASE_URL}/api/products`)
+    fetch(`http://127.0.0.1:8000/api/products/`)
       .then((res) => res.json())
       .then((data) => setProducts(data))
       .catch((err) => console.error("Error fetching products:", err));
