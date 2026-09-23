@@ -12,7 +12,7 @@ function Navbar() {
           <Link to="/CartPage">🛒view cart/checkout</Link>
         </li>
         <li>
-          <Link to="/Login">Login</Link>
+          <a href="http://localhost:8000/admin/">Login</a>
         </li>
         <li>
           <a href="#contact">Contact</a>

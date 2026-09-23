@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import json
 import os
-from django.contrib.auth.hashers import check_password_hash
+from django.contrib.auth.hashers import check_password
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 # your_app_name/views.py
@@ -26,7 +26,7 @@ def wasif_login(request):
 
             admin_hash = os.environ.get("ADMIN_PASSWORD_HASH")
 
-            if admin_hash and check_password_hash(password, admin_hash):
+            if admin_hash and check_password(password, admin_hash):
                 request.session["is_admin"] = True
                 return JsonResponse({"message": "logged in!"}, status=200)
             return JsonResponse({"error": "Invalid password"}, status=401)
