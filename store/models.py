@@ -13,6 +13,7 @@ class Product(models.Model):
         return self.name
 
 class CartItem(models.Model):
+    session_id = models.CharField(max_length=255, db_index=True)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     

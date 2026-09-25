@@ -64,7 +64,7 @@ function App() {
     event.preventDefault();
     const sessionId = getSessionId();
     try {
-      const response = await fetch(`${API_BASE_URL}/api/add/cart`, {
+      const response = await fetch(`${API_BASE_URL}/api/add/cart/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
