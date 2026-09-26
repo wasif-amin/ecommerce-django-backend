@@ -237,9 +237,12 @@ function App() {
   useEffect(() => {
     const sessionId = getSessionId();
 
-    fetch(`${API_BASE_URL}/api/cart-products?session_id=${sessionId}`)
+    fetch(`${API_BASE_URL}/api/cart-products/?session_id=${sessionId}`)
       .then((res) => res.json())
       .then((data) => {
+        console.log("=== API DATA CHECK ===");
+        console.log("Is Array?", Array.isArray(data));
+        console.log("Received Data Structure:", data);
         if (!data.error && Array.isArray(data)) {
           setCartProducts(data);
         } else {

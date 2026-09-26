@@ -62,14 +62,13 @@ def get_cart_products(request):
     
     cart_list = []
     for item in items:
+        
         cart_list.append({
-            "id": item.id,
+            "id": item.id,                
+            "product_id": item.product.id,
+            "name": item.product.name,        
+            "price": str(item.product.price), 
             "quantity": item.quantity,
-            "product": {
-                "id": item.product.id,
-                "name": item.product.name,
-                "price": str(item.product.price), 
-            }
         })
         
     return JsonResponse(cart_list, safe=False, status=200)
