@@ -7,6 +7,10 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
+from rest_framework.decorators import api_view
+import traceback
+from rest_framework.response import Response
+from rest_framework import status 
 from .models import Product
 from .models import CartItem
 def product_list_api(request):
@@ -74,3 +78,27 @@ def get_cart_products(request):
         
     return JsonResponse(cart_list, safe=False, status=200)
 
+@api_view(['PUT'])
+def update_cart(request, item_id):
+    try:
+        change = request.data.get('change', 0)
+        
+        try:
+            cart_item = CartItem.objects.get(pk=item_id)
+        except CartItem.DoesNotExist:
+            return Response({"error": "Item not found"}, status=status.HTTP_404_NOT_FOUND)
+        
+        if hasattr(cart_item.quantity, 'resolve_expression'):
+            cart_item.refresh_from_db()
+
+        cart_item.quantity += change
+        
+        if cart_item.quantity <= 0:
+            cart_item.delete()
+        else:
+            cart_item.save()
+            
+        return Response({"message": "Cart updated successfully"}, status=status.HTTP_200_OK)
+
+    except Exception as e:
+        return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
