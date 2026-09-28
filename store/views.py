@@ -126,3 +126,5 @@ def remove_from_cart(request, item_id):
             {"error": "Internal server crash", "details": str(e)}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+
