@@ -122,7 +122,6 @@ def remove_from_cart(request, item_id):
             )
             
     except Exception as e:
-        # This will return the exact Python crash message to your browser console
         return Response(
             {"error": "Internal server crash", "details": str(e)}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
