@@ -13,6 +13,8 @@ from rest_framework.response import Response
 from rest_framework import status 
 from .models import Product
 from .models import CartItem
+import stripe
+from dotenv import load_dotenv 
 def product_list_api(request):
    
     all_products = Product.objects.all()
@@ -127,4 +129,43 @@ def remove_from_cart(request, item_id):
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
 
+@csrf_exempt
+@require_POST
+def checkout_session(request):
+    try:
+        load_dotenv()
+        stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+        
+        data = json.loads(request.body)
+        cart_items = data.get('items', [])
+        
+        
+        line_items = []
+        for item in cart_items:
+            clean_price = str(item['price']).replace('$', '')
+            
+            line_items.append({
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': item['name'],
+                    },
+                    'unit_amount': int(float(clean_price) * 100),
+                },
+                'quantity': item['quantity'],
+            })
+
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=line_items,
+            mode='payment',
+            success_url='http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url='http://localhost:5173/cart',
+        )
+        
+        return JsonResponse({'url': checkout_session.url})
+        
+    except Exception as e:
+        print("Stripe View Error:", str(e))
+        return JsonResponse({'error': str(e)}, status=500)
 

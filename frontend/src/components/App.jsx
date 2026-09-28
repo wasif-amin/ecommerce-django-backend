@@ -200,7 +200,7 @@ function App() {
   async function handleCheckout() {
     try {
       const sessionId = getSessionId();
-      const response = await fetch(`${API_BASE_URL}/api/checkout-session`, {
+      const response = await fetch(`${API_BASE_URL}/api/checkout-session/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
