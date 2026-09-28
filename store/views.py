@@ -102,3 +102,28 @@ def update_cart(request, item_id):
 
     except Exception as e:
         return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+@api_view(['DELETE'])
+def remove_from_cart(request, item_id):
+    try:
+        cart_item = CartItem.objects.get(id=item_id)
+        cart_item.delete()
+        return Response({"success": "Item removed"}, status=status.HTTP_200_OK)
+        
+    except Cart.DoesNotExist:
+        try:
+            cart_item = Cart.objects.get(product_id=item_id)
+            cart_item.delete()
+            return Response({"success": "Item removed"}, status=status.HTTP_200_OK)
+        except Cart.DoesNotExist:
+            return Response(
+                {"error": f"Item with ID {item_id} not found as an ID or product_id"}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+            
+    except Exception as e:
+        # This will return the exact Python crash message to your browser console
+        return Response(
+            {"error": "Internal server crash", "details": str(e)}, 
+            status=status.HTTP_500_INTERNAL_SERVER_ERROR
+        )

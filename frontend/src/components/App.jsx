@@ -86,16 +86,21 @@ function App() {
 
   async function handleRemoveFromCart(productId) {
     try {
+      const cleanId = String(productId).split(":")[0];
+
       const response = await fetch(
-        `${API_BASE_URL}/api/remove-from-cart/${productId}`,
+        `${API_BASE_URL}/api/remove-from-cart/${cleanId}/`,
         {
           method: "DELETE",
         }
       );
+
       if (response.ok) {
         setCartProducts((prevProducts) =>
           prevProducts.filter((item) => item.id !== productId)
         );
+      } else {
+        console.error("Server returned an error:", response.status);
       }
     } catch (err) {
       console.error("Error removing item:", err);
