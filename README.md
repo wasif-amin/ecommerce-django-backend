@@ -11,4 +11,5 @@ Tech Stack
 - Payment Processing: Stripe
 - Media Management / Cloud Storage & CDN: Cloudinary
 
-DEVELOPER NOTE: I originally built this project, using a flask backand. I then rebuilt it using the same react front end just with a Django backend to learn Django, and the built-in admin panel peaked my interest.
+DEVELOPER NOTE: 
+I originally built this project, using a flask backand. I then rebuilt it using the same react front end just with a Django backend to learn Django, and the built-in admin panel peaked my interest.
