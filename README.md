@@ -6,7 +6,7 @@ DESCRIPTION: A decoupled e-commerce platform with a Python API backend, React st
 Tech Stack
 
 - Frontend: React, React Router, Axios
-- Backend: Python (Flask), REST API, Session Auth
+- Backend: Python (Django), REST API, Session Auth
 - Database: PostgreSQL
 - Tools: Git, dotenv
 - Payment Processing: Stripe
