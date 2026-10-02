@@ -1,7 +1,7 @@
 PROJECT: Niche e-commerce site
 
 
-DESCRIPTION: A decoupled e-commerce platform with a Python API backend, React storefront, and persistent cart. Built to handle real payments and real image uploads. 
+DESCRIPTION: A decoupled e-commerce platform with a Django  backend, React storefront, and persistent cart. Built to handle real payments and real image uploads. 
 
 Tech Stack
 
