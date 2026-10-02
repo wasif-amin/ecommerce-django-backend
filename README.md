@@ -1,4 +1,5 @@
-PROJECT: Full Stack ecommerce Store 
+PROJECT: Full Stack ecommerce Store [![video demo](https://loom.com)](https://www.loom.com/share/c27295531b6b45ad8326ae0c2e89a585)
+
 
 DESCRIPTION: A decoupled e-commerce platform with a Python API backend, React storefront, and persistent cart. Built to handle real payments and real image uploads. 
 
