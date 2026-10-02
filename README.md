@@ -1,4 +1,4 @@
-PROJECT: Niche e-commerce site
+PROJECT: Niche e-commerce site [video Demo](https://www.loom.com/share/c27295531b6b45ad8326ae0c2e89a585)
 
 
 DESCRIPTION: A decoupled e-commerce platform with a Django  backend, React storefront, and persistent cart. Built to handle real payments and real image uploads. 
